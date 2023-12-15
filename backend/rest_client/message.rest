@@ -1,0 +1,17 @@
+### メッセージ送信(test1へ送信)
+POST http://localhost:8090/api/messages
+content-type: application/json
+
+{
+  "content": "testmessageeee",
+  "to": "test1"
+}
+
+### メッセージ送信(test2へ送信)
+POST http://localhost:8090/api/messages
+content-type: application/json
+
+{
+  "content": "testmessage222",
+  "to": "test2"
+}

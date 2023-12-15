@@ -1,0 +1,20 @@
+@startuml("sequence.png")
+actor User
+participant APIServer
+participant WebsocketServer
+participant Worker
+entity RabbitMQ
+
+== メッセージ送信 ==
+User -> APIServer: POST /api/messages
+APIServer -> RabbitMQ: Publish Message
+
+
+== メッセージ受信 ==
+User -> WebsocketServer: Connect /ws
+Worker --> RabbitMQ: Consume
+RabbitMQ --> Worker: Message
+Worker --> WebsocketServer: Send
+WebsocketServer --> User: Send
+
+@enduml
