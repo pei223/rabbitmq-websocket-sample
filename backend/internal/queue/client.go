@@ -84,6 +84,8 @@ func (c *AMQPClient) PublishSampleMessage(message *SampleMessage) error {
 	return c.ch.Publish(sampleMessageExchangeName, "", false, false, amqp.Publishing{
 		ContentType: "text/plain",
 		Body:        bytes,
+		// メッセージを永続化
+		DeliveryMode: 2,
 	})
 }
 
