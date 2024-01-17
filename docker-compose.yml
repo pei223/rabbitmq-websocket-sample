@@ -17,6 +17,11 @@ services:
       - ~/.docker-conf/rabbitmq:/var/lib/rabbitmq
       # https://www.rabbitmq.com/configure.html#config-file
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-
-
+    # dockerのホスト名はランダムハッシュであり、rabbitmqはフォルダ名にホスト名を使うため
+    # 決まった値を設定することで永続化できる
+    # https://github.com/docker-library/rabbitmq/issues/106#issuecomment-241882358
+    # https://stackoverflow.com/questions/41330514/docker-rabbitmq-persistency
+    # 本来はクラスターの場合を考慮してRABBITMQ_NODENAMEを設定すべき.
+    # https://www.rabbitmq.com/configure.html
+    hostname: 'rabbit'
 
